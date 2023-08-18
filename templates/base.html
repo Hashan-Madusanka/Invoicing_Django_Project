@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provoice</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'src/styles.css' %}">
 </head>
 
@@ -44,10 +45,10 @@
 <!--        </li>-->
 <!--    </ul>-->
 <!--</nav>-->
-<header class="lg:ml-[5rem] flex flex-col items-center border-b border-gray-700 py-4">
-    <a href="{% url 'index' %}">
+<header class="relative lg:ml-[5rem] flex flex-col items-center border-b border-gray-700 py-4">
+    <a href="{% url 'home' %}">
         <img src="{% static 'images/business_logo_placeholder_no_bg.png' %}" class="w-[25rem] px-4 pb-2">
-        <h1 class="w-full text-4xl font-normal tracking-wider pb-2 text-center">PROVOICE</h1>
+        <h1 class="absolute inset-0 top-16 w-full text-5xl text-white font-normal tracking-widest pb-2 text-center">PROVOICE</h1>
     </a>
     <div class="flex font-normal tracking-wider">
         {% if user.is_authenticated %}
