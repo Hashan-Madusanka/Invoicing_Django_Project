@@ -7,16 +7,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django + Tailwind CSS</title>
+    <title>Provoice</title>
     <link rel="stylesheet" href="{% static 'src/styles.css' %}">
-
 </head>
 
-<body class="bg-green-50">
-    <div class="container mx-auto mt-4">
-        {% block page_content %}
-        {% endblock %}
+<body class="bg-white text-[1rem]">
+<!--<nav class="fixed bg-red-200 flex flex-col w-[5rem] h-screen z-10">-->
+<!--    <ul class="bg-blue-200">-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--        <li class="bg-orange-200">-->
+<!--            <a href="#">icon</a>-->
+<!--            <span>link-text</span>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<header class="lg:ml-[5rem] flex flex-col items-center border-b border-gray-700 py-4">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'images/business_logo_placeholder_no_bg.png' %}" class="w-[25rem] px-4 pb-2">
+        <h1 class="w-full text-4xl font-normal tracking-wider pb-2 text-center">PROVOICE</h1>
+    </a>
+    <div class="flex font-normal tracking-wider">
+        {% if user.is_authenticated %}
+        <p class="text-gray-800">logged in as&nbsp;<span class="text-red-700">{{ user.first_name }}&nbsp;{{ user.last_name }}&nbsp;</span>|&nbsp;
+            <a href="#" class="text-gray-800 font-normal hover:text-blue-500">logout</a></p>
+        {% endif %}
     </div>
+</header>
+<div class="lg:ml-[5rem]">
+    {% block page_content %}
+    {% endblock %}
+</div>
 </body>
 
 </html>
