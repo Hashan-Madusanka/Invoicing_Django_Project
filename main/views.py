@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from .forms import SignUpForm
 
 
 def index(request):
@@ -21,7 +22,8 @@ def index(request):
 
 
 def logout_user(request):
-    logout(request)
+    if request.method == "POST":
+        logout(request)
     messages.success(request, 'You are now logged out.')
     return redirect('home')
 
@@ -30,17 +32,20 @@ def register_user(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            form.save()
+            # Authenticate and login
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
             user = authenticate(email=email, password=password)
             login(request, user)
             messages.success(request, 'Registration complete. You are now logged in!')
-            return redirect('invoice')
-        else:
-            form = SignUpForm()
-            return render(request, 'register.html', {'form': form})
-        return render(request, 'register.html', {'form: form'})
+            return redirect('view_clients')
+    else:
+        form = SignUpForm()
+        return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 
 def invoice_create(request):
     return render(request, 'invoice.html')
+

@@ -14,19 +14,19 @@
     <div class="flex flex-wrap">
         <div class="text-2xl flex justify-center items-center p-4 bg-blue-200 my-6 w-full border border-gray-800
        rounded-md shadow-md shadow-gray-700 hover:bg-opacity-60 hover:cursor-pointer">
-            <a href="#" class="w-full text-center">add a client</a>
+            <a href="{% url 'create_client' %}" class="w-full text-center">add a client</a>
         </div>
         <div class="text-2xl flex justify-center items-center p-4 bg-green-200 my-6 w-full border border-gray-800
        rounded-md shadow-md shadow-gray-700 hover:bg-opacity-60 hover:cursor-pointer">
-            <a href="#" class="w-full text-center">find a client</a>
+            <a href="{% url 'search_clients' %}" class="w-full text-center">find a client</a>
         </div>
         <div class="text-2xl flex justify-center items-center p-4 bg-red-200 my-6 w-full border border-gray-800
         rounded-md shadow-md shadow-gray-700 hover:bg-opacity-60 hover:cursor-pointer">
-            <a href="#" class="w-full text-center">view all clients</a>
+            <a href="{% url 'view_clients' %}" class="w-full text-center">view all clients</a>
         </div>
         <div class="text-2xl flex justify-center items-center p-4 bg-orange-200 my-6 w-full border border-gray-800
         rounded-md shadow-md shadow-gray-700 hover:bg-opacity-60 hover:cursor-pointer">
-            <a href="#" class="w-full text-center">create an invoice</a>
+            <a href="{% url 'invoice' %}" class="w-full text-center">create an invoice</a>
         </div>
         <div class="text-2xl flex justify-center items-center p-4 bg-purple-200 my-6 w-full border border-gray-800
         rounded-md shadow-md shadow-gray-700 hover:bg-opacity-60 hover:cursor-pointer">
@@ -37,10 +37,13 @@
 </main>
 {% else %}
 <main class="w-3/4 flex flex-col mx-auto h-1/2 justify-center">
-    <h1 class="text-5xl 2xl:text-[2.7em] w-4/5 pb-3 mx-auto text-center">let's get you logged in.</h1>
-    <p class="text-center font-light tracking-wide">account not activated yet?<a href="#"
-                                                                                 class="text-blue-600 hover:underline hover:text-blue-800">&nbsp;click
-        here.</a></p>
+    <div class="pt-16">
+        <h1 class="text-5xl 2xl:text-[2.7em] w-4/5 pb-3 mx-auto text-center">let's get you logged in.</h1>
+        <p class="text-center font-light tracking-wide">account not activated yet?
+            <a href="{% url 'register' %}" class="text-blue-600 hover:underline hover:text-blue-800">&nbsp;click here.</a>
+        </p>
+    </div>
+
     <br/><br/>
     <form method="POST" action="{% url 'home' %}" class="w-full md:w-3/4 xl:w-1/2 2xl:w-1/3 mx-auto space-y-6">
         {% csrf_token %}

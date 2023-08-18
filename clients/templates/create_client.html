@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Create Client{% endblock %}
+
+{% block page_content %}
+ <main class="flex flex-col mb-20 lg:px-44">
+    {% if user.is_authenticated %}
+    <h1 class="text-4xl mt-6 mb-8 pb-2 text-start border-b border-gray-700">Create New Client</h1>
+    <form method="POST" action="" class="w-full space-y-8">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="w-full relative">
+            <button type="submit"
+                    class="h-8 absolute right-0 top-0 text-2xl font-light my-4 px-2 text-black hover:text-blue-500">
+                create client
+            </button>
+        </div>
+    </form>
+    {% else %}
+    <h2>Permission denied.  Please <a href="{% url 'register' %}">activate</a>&nbsp; your account.</h2>
+    {% endif %}
+</main>
+{% endblock %}

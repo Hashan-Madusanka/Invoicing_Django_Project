@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Client
 
-# Register your models here.
+
+class ClientAdmin(admin.ModelAdmin):
+    fields = ["first_name", "last_name", "street_address", "city", "state", "email", "phone"]
+
+
+admin.site.register(Client)

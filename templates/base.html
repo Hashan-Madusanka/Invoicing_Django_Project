@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
 </head>
 
 <body class="bg-white text-[1rem]">
@@ -45,18 +46,27 @@
 <!--        </li>-->
 <!--    </ul>-->
 <!--</nav>-->
-<header class="relative lg:ml-[5rem] flex flex-col items-center border-b border-gray-700 py-4">
+<header class="lg:ml-[5rem] flex flex-col items-center border-b border-gray-700 py-4">
     <a href="{% url 'home' %}">
         <img src="{% static 'images/business_logo_placeholder_no_bg.png' %}" class="w-[25rem] px-4 pb-2">
-        <h1 class="absolute inset-0 top-16 w-full text-5xl text-white font-normal tracking-widest pb-2 text-center">PROVOICE</h1>
+        <h1 class="absolute left-12 top-16 w-full text-5xl text-white opacity-90 font-normal tracking-widest pb-2 text-center">PROVOICE</h1>
+        <h1 class="absolute left-10 top-16 w-full text-6xl text-gray-700 opacity-20 font-normal tracking-widest pb-2 text-center">PROVOICE</h1>
     </a>
     <div class="flex font-normal tracking-wider">
         {% if user.is_authenticated %}
         <p class="text-gray-800">logged in as&nbsp;<span class="text-red-700">{{ user.first_name }}&nbsp;{{ user.last_name }}&nbsp;</span>|&nbsp;
-            <a href="#" class="text-gray-800 font-normal hover:text-blue-500">logout</a></p>
+            <a href="{% url 'logout' %}" class="text-gray-800 z-20 font-normal hover:text-blue-500">logout</a></p>
         {% endif %}
     </div>
 </header>
+{% if messages %}
+{% for message in messages %}
+<div id="msg" class="relative bg-orange-100 border-b border-gray-700">
+    <p class="ml-[5rem] text-center text-lg py-1">{{ message }}</p>
+    <button onclick="closeMsg()" class="text-2xl absolute right-5 bottom-[1%]">X</button>
+</div>
+{% endfor %}
+{% endif %}
 <div class="lg:ml-[5rem]">
     {% block page_content %}
     {% endblock %}
