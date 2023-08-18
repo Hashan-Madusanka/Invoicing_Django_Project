@@ -22,8 +22,7 @@ def index(request):
 
 
 def logout_user(request):
-    if request.method == "POST":
-        logout(request)
+    logout(request)
     messages.success(request, 'You are now logged out.')
     return redirect('home')
 

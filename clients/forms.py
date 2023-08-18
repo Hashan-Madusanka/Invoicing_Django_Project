@@ -1,7 +1,8 @@
+import phonenumbers
 from django.forms import fields
 from .models import Client
 from django import forms
-from phonenumber_field.modelfields import PhoneNumberField
+from phonenumber_field.formfields import PhoneNumberField
 
 
 class ClientForm(forms.ModelForm):
@@ -12,7 +13,7 @@ class ClientForm(forms.ModelForm):
     city = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'city'}), label='')
     state = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'state'}), label='')
     zipcode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'zipcode'}), label='')
-    phone = PhoneNumberField(blank=True)
+    phone = PhoneNumberField()
     email = forms.CharField(widget=forms.EmailInput(attrs={'placeholder': 'email'}), label='')
     notes = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'notes'}), label='')
 
